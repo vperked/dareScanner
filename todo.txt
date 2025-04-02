@@ -1,0 +1,5 @@
+Auto ASN parsing, figure out a API that can return all the ips in ASN for more Cidr data. 
+Better listing, possibly grabbing ASNs from a DB? 
+
+Take a screenshot of a webpage
+Make a SSH connection to the IP if 22 is open
