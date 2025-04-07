@@ -1,8 +1,10 @@
 package pkg
 
 import (
+	"encoding/json"
 	"fmt"
 	"net"
+	"os"
 	"playGO/cmd"
 	"playGO/util"
 	"sync"
@@ -11,9 +13,29 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 )
 
-var ports = []int{22, 80, 443, 8080, 3306, 5432, 21, 25, 110, 135, 139, 445, 3389, 5900, 6379, 27017, 5000, 8000, 9000}
+type PortScanner struct {
+	Ports []int `json:"ports"`
+}
+
+func LoadPorts() ([]int, error) {
+	file, err := os.Open("config/config.json")
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	var Ports PortScanner
+	if err := json.NewDecoder(file).Decode(&Ports); err != nil {
+		return nil, err
+	}
+	return Ports.Ports, nil
+}
 
 func ScanPort(ip string) {
+	ports, err := LoadPorts()
+	if err != nil {
+		println("Error loading ports:", err.Error())
+		return
+	}
 	for _, port := range ports {
 		addr := net.JoinHostPort(ip, fmt.Sprintf("%d", port))
 		conn, err := net.DialTimeout("tcp", addr, 2)
