@@ -1,8 +1,7 @@
-package cmd
+package util
 
 import (
 	"encoding/json"
-	"net"
 	"os"
 )
 
@@ -10,28 +9,20 @@ type HostData struct {
 	Host string `json:"ips"`
 }
 
-func GetIPFromCIDIR(cidr string) ([]string, error) {
-	ip, ipNet, err := net.ParseCIDR(cidr)
+func GetConfig() []HostData {
+	filePath := "config/ips.json"
+	data, err := os.ReadFile(filePath)
 	if err != nil {
-		return nil, err
+		println("Error reading file:", err)
+		return nil
 	}
-	var ips []string
-	for ip := ip.Mask(ipNet.Mask); ipNet.Contains(ip); increaseIP(ip) {
-		ips = append(ips, ip.String())
+	var config []HostData
+	err = json.Unmarshal(data, &config)
+	if err != nil {
+		println("Error unmarshalling JSON:", err)
+		return nil
 	}
-	if len(ips) > 2 {
-		ips = ips[1 : len(ips)-1]
-	}
-	return ips, nil
-}
-
-func increaseIP(ip net.IP) {
-	for j := len(ip) - 1; j >= 0; j-- {
-		ip[j]++
-		if ip[j] > 0 {
-			break
-		}
-	}
+	return config
 }
 
 func SaveToConfig(ips []string) error {
