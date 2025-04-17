@@ -31,6 +31,6 @@ func main() {
 	case "no":
 		println("Scan aborted.")
 	default:
-		println("Invalid input. Please enter 'yes' or 'no'.")
+		println("Invalid input. Please enter 'pscan', 'ftp', 'ssh', 'web', or 'no'.")
 	}
 }

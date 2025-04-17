@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/rand"
 	"net"
 	"net/http"
 	"playGO/util"
@@ -90,6 +91,26 @@ func GetIPFromCIDIR(cidr string, limit int) ([]string, error) {
 		}
 	}
 	return ips, nil
+}
+
+func RandomASN(count int) []string {
+	// Generate random ASN numbers
+	asn := make([]string, count)
+	for i := 0; i < count; i++ {
+		randomASN := fmt.Sprintf("%d", rand.Intn(100000))
+		ips, err := GetIPFromASN(randomASN)
+		if err != nil {
+			println("Error getting IPs from ASN:", err.Error())
+			continue
+		}
+		if len(ips) > 0 {
+			asn[i] = randomASN
+			break
+		} else {
+			fmt.Printf("No IPs found for ASN %s, retrying...\n", randomASN)
+		}
+	}
+	return asn
 }
 
 func increaseIP(ip net.IP) {

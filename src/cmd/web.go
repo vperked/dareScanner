@@ -54,7 +54,7 @@ func IsWebServer(ipPort string, ipNoPort string) {
 		}
 		message := fmt.Sprintf("Web server found at %s (%s): %s", ipPort, hostname, webServer)
 		util.AddChecked(ipNoPort)
-		SendWebhookMessage("https://discord.com/api/webhooks/1356857871215890452/TUSPalcrGvLv6urWFtTM4mbxHNR34wYeMPwu40nmZjxz3_elHiIlboGfvafO5Ng4OMMm", message)
+		SendWebhookMessage("webhookHere", message)
 		fmt.Printf("Web server found at %s: %s\n", ipPort, webServer)
 	} else {
 		fmt.Printf("No web server found at %s\n", ipPort)

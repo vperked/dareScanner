@@ -42,7 +42,7 @@ func ScanPort(ip string) {
 		if err != nil {
 			println("Port", port, "is closed on", ip)
 		} else {
-			webhook := "https://discord.com/api/webhooks/1356857871215890452/TUSPalcrGvLv6urWFtTM4mbxHNR34wYeMPwu40nmZjxz3_elHiIlboGfvafO5Ng4OMMm"
+			webhook := "webhookHere"
 			cmd.SendWebhookMessage(webhook, fmt.Sprintf("Port %d is open on %s", port, ip))
 			println("Port", port, "is open on", ip)
 			conn.Close()
@@ -84,7 +84,7 @@ type ConfigData struct {
 }
 
 func Scanner(asn int) {
-	asns := util.RandomASN(asn)
+	asns := cmd.RandomASN(asn)
 	var allIPs []string
 	for _, asn := range asns {
 		err := util.InsertASN(asn, "")
