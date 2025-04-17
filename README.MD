@@ -6,10 +6,6 @@ dareScanner is a powerful and efficient network scanner built in Go. It allows u
 
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
