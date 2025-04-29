@@ -23,5 +23,5 @@ dareScanner is a powerful and efficient network scanner built in Go. It allows u
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/dareScanner.git
+   git clone https://github.com/vperked/dareScanner.git
    cd dareScanner
